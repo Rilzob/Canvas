@@ -5,18 +5,22 @@ import java.awt.image.BufferedImage;
 
 public class ImageFrame extends JFrame{
 
-    private String buttonName = "";
-    private String menuitem = "";
-    private AbstractTool currentTool;
-    public JPanel DrawPanel; // 画图区域Panel
-    public Color currentColor; //
+    public String buttonName = "铅笔"; // 初始化状态的工具为铅笔
+    public String menuitem = "";
+    public AbstractTool currentTool;
+    public DrawSpace DrawPanel; // 画图区域Panel
+    public Color currentColor; // 当前正在使用的颜色
     public JPanel currentColorPanel = new JPanel(); // 当前颜色部分Panel
-    public BufferedImage bufferedImage;
+//    public BufferedImage bufferedImage;
 
-//    public void initBufferedImage(){
-//        this.bufferedImage = ((Graphics2D) DrawPanel.getGraphics()).getDeviceConfiguration().
-//                createCompatibleImage(DrawPanel.getWidth(), DrawPanel.getHeight(), Transparency.OPAQUE);
-//    }
+
+    public BufferedImage getImage(){
+        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = image.createGraphics();
+        g2d.fillRect(0,0,image.getWidth(),image.getHeight());
+        paint(g2d);
+        return image;
+    }
 
     private void createMenuBar(){
         // 创建一个JMenuBar放置菜单
@@ -44,8 +48,8 @@ public class ImageFrame extends JFrame{
                     menuItem.addActionListener(e -> {
                         menuitem = e.getActionCommand();
                         System.out.println("按下的菜单是" + menuitem);
-                        currentTool = ToolFactory.getToolInstance(buttonName,this);
-                        currentTool.getGraphics().setColor(currentColor);
+//                        currentTool = DrawPanel.getToolInstance(buttonName,this);
+//                        currentTool.getGraphics().setColor(currentColor);
                     });
                 }
             }
@@ -80,8 +84,8 @@ public class ImageFrame extends JFrame{
             button.addActionListener(e -> {
                 buttonName = e.getActionCommand();
                 System.out.println("按下的按钮是" + buttonName);
-                currentTool = ToolFactory.getToolInstance(buttonName,this);
-                currentTool.getGraphics().setColor(currentColor);
+                currentTool = DrawPanel.getToolInstance(buttonName,this);
+                // currentTool.getGraphics().setColor(currentColor);
                 });
         }
         ToolPanel.add(toolBar);
@@ -123,7 +127,7 @@ public class ImageFrame extends JFrame{
         this.add(ColorPanel, BorderLayout.SOUTH);
     }
 
-    private void init(){
+    public void init(){
         // 确保一个漂亮的外观风格
         JFrame.setDefaultLookAndFeelDecorated(true);
 
@@ -156,39 +160,42 @@ public class ImageFrame extends JFrame{
         this.pack();
         this.setVisible(true);
 
-        // JPanel.getGraphics()只有在JFrame.setVisible()后才能不返回NULL
-        this.currentTool = ToolFactory.getToolInstance("铅笔",this);
-
-        // 创建鼠标运动监听器
-        MouseMotionListener motionListener = new MouseMotionAdapter() {
-            public void mouseDragged(MouseEvent e) {
-                currentTool.mouseDragged(e);
-            }
-
-            public void mouseMoved(MouseEvent e) {
-                currentTool.mouseMoved(e);
-            }
-        };
-        MouseListener mouseListener = new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                currentTool.mouseClicked(e);
-            }
-
-            public void mousePressed(MouseEvent e) {
-                currentTool.mousePressed(e);
-            }
-
-            public void mouseReleased(MouseEvent e) {
-                currentTool.mouseReleased(e);
-            }
-        };
-        DrawPanel.addMouseMotionListener(motionListener);
-        DrawPanel.addMouseListener(mouseListener);
-    }
-
-    public static void main(String[] args){
-        // 显示应用GUI
-        ImageFrame Frame = new ImageFrame();
-        Frame.init();
+//        // JPanel.getGraphics()只有在JFrame.setVisible()后才能不返回NULL
+//        this.currentTool = DrawPanel.getToolInstance("铅笔",this);
+//
+//        // 创建鼠标运动监听器
+//        MouseMotionListener motionListener = new MouseMotionAdapter() {
+//            public void mouseDragged(MouseEvent e) {
+//                currentTool.mouseDragged(e);
+//                DrawPanel.repaint();
+//                DrawPanel.abstractTools.add(new LineTool(currentTool.getStartX(),currentTool.getStartY(),currentTool.getEndX(),currentTool.getEndY()));
+//            }
+//
+//            public void mouseMoved(MouseEvent e) {
+//                currentTool.mouseMoved(e);
+//                DrawPanel.repaint();
+//            }
+//        };
+//        MouseListener mouseListener = new MouseAdapter() {
+//            public void mouseClicked(MouseEvent e) {
+//                currentTool.mouseClicked(e);
+//                DrawPanel.repaint();
+//            }
+//
+//            public void mousePressed(MouseEvent e) {
+//                currentTool.mousePressed(e);
+//                DrawPanel.repaint();
+//            }
+//
+//            public void mouseReleased(MouseEvent e) {
+//                currentTool.mouseReleased(e);
+//                DrawPanel.repaint();
+////                DrawPanel.abstractTools.add(currentTool);
+////                currentTool = new AbstractTool();
+//            }
+//        };
+//        setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+//        DrawPanel.addMouseMotionListener(motionListener);
+//        DrawPanel.addMouseListener(mouseListener);
     }
 }

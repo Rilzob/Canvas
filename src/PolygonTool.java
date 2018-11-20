@@ -4,33 +4,53 @@ import java.awt.event.MouseEvent;
 public class PolygonTool extends AbstractTool{
     private int firstX;
     private int firstY;
-    private boolean flag = true; // 用以标记绘制多边形时是否是第一条边
+//    private boolean flag = true; // 用以标记绘制多边形时是否是第一条边
 
     public PolygonTool(ImageFrame frame){
         this.frame = frame;
         this.graphics = frame.DrawPanel.getGraphics();
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e){
-        super.mouseClicked(e);
-        if (e.getClickCount() == 2){
-            graphics.drawLine(getPressX(),getPressY(),firstX,firstY);
-            flag = true;
-        }
+    public PolygonTool(ImageFrame frame, int StartX, int StartY, int EndX, int EndY){
+        this.frame = frame;
+        // this.graphics = frame.DrawPanel.getGraphics();
+        this.color = frame.currentColor;
+        setStartX(StartX);
+        setStartY(StartY);
+        setEndX(EndX);
+        setEndY(EndY);
     }
+
+//    @Override
+//    public void mouseClicked(MouseEvent e){
+//        super.mouseClicked(e);
+//        if (e.getClickCount() == 2){
+//            graphics.drawLine(getStartX(),getStartY(),firstX,firstY);
+//            setFlag(true);
+//        }
+//    }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
-        if (flag){
-            firstX = e.getX();
-            firstY = e.getY();
-        }else {
-            graphics.drawLine(getPressX(),getPressY(),e.getX(),e.getY());
+        if (isFlag()){
+            setFirstX(e.getX());
+            setFirstY(e.getY());
+//            setStartX(e.getX());
+//            setStartY(e.getY());
         }
-        setPressX(e.getX());
-        setPressY(e.getY());
-        flag = false;
+//        else {
+//            setEndX(e.getX());
+//            setEndY(e.getY());
+//            // graphics.drawLine(getStartX(),getStartY(),e.getX(),e.getY());
+//        }
+//        setStartX(e.getX());
+//        setStartY(e.getY());
+//        setFlag(false);
+    }
+
+    public void draw(Graphics2D g2){
+        g2.setColor(color);
+        g2.drawLine(getStartX(), getStartY(), getEndX(), getEndY());
     }
 }

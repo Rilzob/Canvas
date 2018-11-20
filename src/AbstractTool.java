@@ -1,22 +1,49 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AbstractTool implements MouseMotionListener,MouseListener{
-    private int PressX;
-    private int PressY;
+public class AbstractTool extends JLabel implements MouseMotionListener,MouseListener{
+    private int StartX = 0;
+    private int StartY = 0;
+    private int EndX = 0;
+    private int EndY = 0;
+    private boolean flag = true;  // 用以标记绘制多边形时是否是第一条边
     public Graphics graphics;// 绘图区域的图形上下文
     public Color color; // 工具当前的颜色
     public ImageFrame frame;
+    private int firstX = 0; // 绘制多边形时记录第一个点
+    private int firstY = 0;
 
-    public int getPressX(){ return this.PressX; }
+    public int getStartX(){ return this.StartX; }
 
-    public int getPressY(){ return this.PressY; }
+    public int getStartY(){ return this.StartY; }
 
-    public void setPressX(int x){ this.PressX = x; }
+    public void setStartX(int x){ this.StartX = x; }
 
-    public void setPressY(int y){ this.PressY = y; }
+    public void setStartY(int y){ this.StartY = y; }
+
+    public int getEndX(){ return this.EndX; }
+
+    public int getEndY(){ return this.EndY; }
+
+    public void setEndX(int EndX){ this.EndX = EndX; }
+
+    public void setEndY(int EndY){ this.EndY = EndY; }
 
     public Graphics getGraphics(){ return this.graphics; }
+
+    public void setFlag(boolean flag){ this.flag = flag; }
+
+    public boolean isFlag() { return flag; }
+
+    public int getFirstX(){ return this.firstX; }
+
+    public int getFirstY(){ return this.firstY; }
+
+    public void setFirstX(int firstX){ this.firstX = firstX; }
+
+    public void setFirstY(int firstY){ this.firstY = firstY; }
+
 
     @Override
     public void mouseDragged(MouseEvent e){
@@ -55,6 +82,10 @@ public class AbstractTool implements MouseMotionListener,MouseListener{
     public void mouseClicked(MouseEvent e){
         // TODO Auto-generated method stub
         System.out.println("鼠标点击");
+    }
+
+    public void draw(Graphics2D g2){
+
     }
 }
 

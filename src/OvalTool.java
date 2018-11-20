@@ -1,18 +1,21 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class RoundRectTool extends AbstractTool{
+public class OvalTool extends AbstractTool{
     private int x;
     private int y;
 
-    public RoundRectTool(ImageFrame frame){
+    public int getX(){ return this.x; }
+    public int getY(){ return this.y; }
+
+    public OvalTool(ImageFrame frame){
         this.frame = frame;
         this.graphics = frame.DrawPanel.getGraphics();
     }
 
-    public RoundRectTool(ImageFrame frame,int StartX, int StartY, int EndX, int EndY){
+    public OvalTool(ImageFrame frame,int StartX, int StartY, int EndX, int EndY){
         this.frame = frame;
-        this.graphics = frame.DrawPanel.getGraphics();
+        // this.graphics = frame.DrawPanel.getGraphics();
         this.color = frame.currentColor;
         setStartX(StartX);
         setStartY(StartY);
@@ -22,8 +25,13 @@ public class RoundRectTool extends AbstractTool{
         this.y = getStartY() > getEndY() ? getEndY():getStartY();
     }
 
-    public int getX(){ return this.x; }
-    public int getY(){ return this.y; }
+//    @Override
+//    public void mouseReleased(MouseEvent e) {
+//        super.mouseReleased(e);
+//        int x = getStartX() > e.getX() ? e.getX():getStartX();
+//        int y = getStartY() > e.getY() ? e.getY():getStartY();
+//        graphics.drawOval(x, y, Math.abs(getStartX()-e.getX()), Math.abs(getStartY()-e.getY()));
+//    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -43,6 +51,6 @@ public class RoundRectTool extends AbstractTool{
 
     public void draw(Graphics2D g2){
         g2.setColor(color);
-        g2.drawRoundRect(getX(), getY(), Math.abs(getStartX()-getEndX()), Math.abs(getStartY()-getEndY()),20,20);
+        g2.drawOval(getX(),getY(), Math.abs(getStartX()-getEndX()), Math.abs(getStartY()-getEndY()));
     }
 }
