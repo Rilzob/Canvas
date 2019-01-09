@@ -1,9 +1,12 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 
-public class ImageFrame extends JFrame{
+public class ImageFrame extends JFrame implements Serializable {
 
     public String buttonName = "铅笔"; // 初始化状态的工具为铅笔
     public String menuitem = "";
@@ -11,16 +14,6 @@ public class ImageFrame extends JFrame{
     public DrawSpace DrawPanel; // 画图区域Panel
     public Color currentColor; // 当前正在使用的颜色
     public JPanel currentColorPanel = new JPanel(); // 当前颜色部分Panel
-//    public BufferedImage bufferedImage;
-
-
-    public BufferedImage getImage(){
-        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = image.createGraphics();
-        g2d.fillRect(0,0,image.getWidth(),image.getHeight());
-        paint(g2d);
-        return image;
-    }
 
     private void createMenuBar(){
         // 创建一个JMenuBar放置菜单
@@ -48,8 +41,21 @@ public class ImageFrame extends JFrame{
                     menuItem.addActionListener(e -> {
                         menuitem = e.getActionCommand();
                         System.out.println("按下的菜单是" + menuitem);
-//                        currentTool = DrawPanel.getToolInstance(buttonName,this);
-//                        currentTool.getGraphics().setColor(currentColor);
+                        if (menuitem.equals("保存(S)")){
+                            File file = ImageService.saveFile(this);
+                            if (file != null){
+                                if (file.getName().endsWith(".jpg")) {
+                                    try {
+                                        ImageIO.write(this.DrawPanel.getImage(), ".jpg", file);
+                                    } catch (IOException ae) {
+                                        JOptionPane.showMessageDialog(this, "保存出错！请重试！");
+                                        ae.printStackTrace();
+                                    }
+                                } else if (file.getName().endsWith(".sav")){
+                                    this.DrawPanel.writeImage(file);
+                                }
+                            }
+                        }
                     });
                 }
             }

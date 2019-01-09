@@ -1,3 +1,4 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -34,16 +35,20 @@ public class ImageService {
 //    }
 
     // 保存文件
-    public File saveFile(ImageFrame frame){
+    public static File saveFile(ImageFrame frame){
         JFileChooser saveFileChooser = new JFileChooser();
+        FileNameExtensionFilter jpgFilter = new FileNameExtensionFilter("JPG图像", "jpg");
+        FileNameExtensionFilter savFilter = new FileNameExtensionFilter("SAV文件", "sav");
+        saveFileChooser.setFileFilter(savFilter);
+        saveFileChooser.setFileFilter(jpgFilter);
         saveFileChooser.showSaveDialog(frame);
         File file = saveFileChooser.getSelectedFile();
-        FileNameExtensionFilter jpgFilter = new FileNameExtensionFilter("SAV文件", "sav");
-        FileNameExtensionFilter savFilter = new FileNameExtensionFilter("JPG图像", "jpg");
-        if (saveFileChooser.getFileFilter() == jpgFilter){
+        if (saveFileChooser.getFileFilter() == jpgFilter) {
             file = new File(file.getAbsoluteFile() + ".jpg");
         } else if (saveFileChooser.getFileFilter() == savFilter){
-            file = new File(file.getAbsoluteFile() + ".sav");
+//            if (!file.getName().endsWith(".sav")) {
+                file = new File(file.getAbsoluteFile() + ".sav");
+//            }
         }
         return file;
     }

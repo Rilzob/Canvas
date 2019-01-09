@@ -1,5 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class DrawSpace extends JPanel {
@@ -47,5 +52,26 @@ public class DrawSpace extends JPanel {
         }
     }
 
+    public BufferedImage getImage(){
+        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = image.createGraphics();
+        g2d.fillRect(0,0, image.getWidth(),image.getHeight());
+        paint(g2d);
+        return image;
+    }
+
+    public void writeImage(File file){
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(abstractTools);
+            oos.flush();
+            oos.close();
+            fos.close();
+        } catch (IOException ae){
+            JOptionPane.showMessageDialog(this, "保存出错");
+            ae.printStackTrace();
+        }
+    }
 }
 
