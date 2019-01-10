@@ -21,12 +21,6 @@ public class EraserTool extends AbstractTool{
         super.mouseDragged(e);
         setStartX(e.getX());
         setStartY(e.getY());
-//        int size = 20;
-//        if (getStartX() > 0 && getStartY() > 0){
-//            int x = getStartX();
-//            int y = getStartY();
-//            graphics.fillOval(x, y, size, size);
-//        }
     }
 
     public void draw(Graphics2D g2){

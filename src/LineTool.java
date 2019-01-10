@@ -8,11 +8,6 @@ public class LineTool extends AbstractTool {
         this.graphics = frame.DrawPanel.getGraphics();
     }
 
-//    @Override
-//    public Graphics getGraphics() {
-//        return super.getGraphics();
-//    }
-
     public LineTool(ImageFrame frame,int StartX, int StartY, int EndX, int EndY){
         this.frame = frame;
         this.graphics = frame.DrawPanel.getGraphics();

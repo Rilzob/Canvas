@@ -22,8 +22,7 @@ public class RectTool extends AbstractTool{
         this.y = getStartY() > getEndY() ? getEndY():getStartY();
     }
 
-    public void setX(int x){ this.x = x; }
-    public void setY(int y){ this.y = y; }
+    // 删除无用方法
     public int getX(){ return this.x; }
     public int getY(){ return this.y; }
 

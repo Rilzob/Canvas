@@ -15,7 +15,6 @@ public class OvalTool extends AbstractTool{
 
     public OvalTool(ImageFrame frame,int StartX, int StartY, int EndX, int EndY){
         this.frame = frame;
-        // this.graphics = frame.DrawPanel.getGraphics();
         this.color = frame.currentColor;
         setStartX(StartX);
         setStartY(StartY);
@@ -24,14 +23,6 @@ public class OvalTool extends AbstractTool{
         this.x = getStartX() > getEndX() ? getEndX():getStartX();
         this.y = getStartY() > getEndY() ? getEndY():getStartY();
     }
-
-//    @Override
-//    public void mouseReleased(MouseEvent e) {
-//        super.mouseReleased(e);
-//        int x = getStartX() > e.getX() ? e.getX():getStartX();
-//        int y = getStartY() > e.getY() ? e.getY():getStartY();
-//        graphics.drawOval(x, y, Math.abs(getStartX()-e.getX()), Math.abs(getStartY()-e.getY()));
-//    }
 
     @Override
     public void mousePressed(MouseEvent e) {
