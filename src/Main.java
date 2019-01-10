@@ -123,20 +123,11 @@ public class Main {
                     Frame.DrawPanel.repaint();
                 } else if (Frame.buttonName.equals("多边形")){
                     Frame.currentTool.mouseReleased(e);
-//                    Frame.DrawPanel.abstractTools.add(new PolygonTool(Frame, Frame.currentTool.getStartX(), Frame.currentTool.getStartY(), Frame.currentTool.getEndX(), Frame.currentTool.getEndY()));
-//                    Frame.currentTool.setStartX(e.getX());
-//                    if (Frame.currentTool.isFlag()){
-//                        Frame.currentTool.setFirstX(e.getX());
-//                        Frame.currentTool.setFirstY(e.getY());
-////                        Frame.currentTool.setStartX(e.getX());
-////                        Frame.currentTool.setStartY(e.getY());
-//                    }else {
                     if (Frame.currentTool.getStartX() > 0 && Frame.currentTool.getStartY() > 0 ) {
                         Frame.currentTool.setEndX(e.getX());
                         Frame.currentTool.setEndY(e.getY());
                         Frame.DrawPanel.abstractTools.add(new PolygonTool(Frame, Frame.currentTool.getStartX(), Frame.currentTool.getStartY(), Frame.currentTool.getEndX(), Frame.currentTool.getEndY()));
                     }
-                        // graphics.drawLine(getStartX(),getStartY(),e.getX(),e.getY());
                     Frame.currentTool.setStartX(e.getX());
                     Frame.currentTool.setStartY(e.getY());
                     Frame.currentTool.setFlag(false);
@@ -144,7 +135,7 @@ public class Main {
             }
         };
         Frame.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-        Frame.DrawPanel.addMouseMotionListener(motionListener);
+        Frame.DrawPanel.addMouseMotionListener(motionListener); // 添加监听器
         Frame.DrawPanel.addMouseListener(mouseListener);
     }
 }
