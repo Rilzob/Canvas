@@ -4,6 +4,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.*;
 
+// 菜单事务处理
 public class ImageService {
     // 初始化画图
     public static void initDrawSpace(ImageFrame frame){
@@ -26,7 +27,7 @@ public class ImageService {
                 try {
                     ImageIO.write(frame.DrawPanel.getImage(),
                             "jpg", file);  // 写入文件
-                    JOptionPane.showMessageDialog(frame,
+                    JOptionPane.showMessageDialog(frame,    // 创建对话框告知
                             "保存成功！");
                 } catch (IOException ae) {
                     JOptionPane.showMessageDialog(frame,
@@ -71,5 +72,17 @@ public class ImageService {
     public static void about(ImageFrame frame) {
         JOptionPane.showMessageDialog(frame, "by: Rilzob, zzndb", "关于",
                 JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // 退出
+    public static void exit(ImageFrame frame) {
+        if (frame.DrawPanel.abstractTools.size() > 1) { // 画布非空
+            int yn = JOptionPane.showConfirmDialog(frame, "画布不空,是否保存文件?",
+                    "保存文件", JOptionPane.YES_NO_OPTION);
+            if (yn == JOptionPane.YES_OPTION) {
+                saveFile(frame);
+            }
+        }
+        System.exit(0);
     }
 }

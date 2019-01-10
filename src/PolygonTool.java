@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+// 多边形绘制类
 public class PolygonTool extends AbstractTool{
 
     public PolygonTool(ImageFrame frame){
@@ -26,7 +27,7 @@ public class PolygonTool extends AbstractTool{
         }
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 独立绘制方法
         g2.setColor(color);
         g2.drawLine(getStartX(), getStartY(), getEndX(), getEndY());
     }

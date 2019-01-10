@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+// 圆角矩形绘制类
 public class RoundRectTool extends AbstractTool{
     private int x;
     private int y;
@@ -41,7 +42,7 @@ public class RoundRectTool extends AbstractTool{
         this.y = getStartY() > getEndY() ? getEndY():getStartY();
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 独立绘制方法
         g2.setColor(color);
         g2.drawRoundRect(getX(), getY(), Math.abs(getStartX()-getEndX()), Math.abs(getStartY()-getEndY()),20,20);
     }

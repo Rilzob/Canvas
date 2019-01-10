@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+// 喷枪实现
 public class AtomizerTool extends AbstractTool{
     public AtomizerTool(ImageFrame frame){
         this.frame = frame;
@@ -28,7 +29,7 @@ public class AtomizerTool extends AbstractTool{
         setStartY(e.getY());
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 独立绘制方法
         g2.setColor(color);
         g2.fillOval(getStartX()+getEndX(),getStartY()+getEndY(),2,2);
     }

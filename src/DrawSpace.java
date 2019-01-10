@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+// 图像处理，保存,画布的绘制
 public class DrawSpace extends JPanel {
     public AbstractTool currentTool = new AbstractTool();
     public ArrayList<AbstractTool> abstractTools = new ArrayList<>();
@@ -43,7 +44,7 @@ public class DrawSpace extends JPanel {
         }
     }
 
-    public void paintComponent(Graphics g, Image bgImage) {
+    public void paintComponent(Graphics g, Image bgImage) { // 实现打开操作的背景填充
         super.paintComponent(g);
         g.drawImage(bgImage, 0, 0, null);
     }
@@ -58,7 +59,7 @@ public class DrawSpace extends JPanel {
         }
     }
 
-    public BufferedImage getImage(){
+    public BufferedImage getImage(){    // 获取实际画布的image
         BufferedImage image = new BufferedImage(getWidth(), getHeight(),
                 BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = image.createGraphics();

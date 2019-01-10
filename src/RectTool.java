@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+// 矩形绘制类
 public class RectTool extends AbstractTool{
     private int x;
     private int y;
@@ -42,7 +43,7 @@ public class RectTool extends AbstractTool{
         this.y = getStartY() > getEndY() ? getEndY():getStartY();
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 矩形绘制方法
         g2.setColor(color);
         g2.drawRect(getX(), getY(), Math.abs(getStartX()-getEndX()), Math.abs(getStartY()-getEndY()));
     }
