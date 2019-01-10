@@ -1,17 +1,12 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-
+// 直线绘制类
 public class LineTool extends AbstractTool {
     public LineTool(ImageFrame frame){
         this.frame = frame;
         this.graphics = frame.DrawPanel.getGraphics();
     }
-
-//    @Override
-//    public Graphics getGraphics() {
-//        return super.getGraphics();
-//    }
 
     public LineTool(ImageFrame frame,int StartX, int StartY, int EndX, int EndY){
         this.frame = frame;
@@ -37,7 +32,7 @@ public class LineTool extends AbstractTool {
         setEndY(e.getY());
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 独立绘制方法
         g2.setColor(color);
         g2.drawLine(getStartX(), getStartY(), getEndX(), getEndY());
     }

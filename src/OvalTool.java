@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+// 椭圆绘制类
 public class OvalTool extends AbstractTool{
     private int x;
     private int y;
@@ -15,7 +16,6 @@ public class OvalTool extends AbstractTool{
 
     public OvalTool(ImageFrame frame,int StartX, int StartY, int EndX, int EndY){
         this.frame = frame;
-        // this.graphics = frame.DrawPanel.getGraphics();
         this.color = frame.currentColor;
         setStartX(StartX);
         setStartY(StartY);
@@ -24,14 +24,6 @@ public class OvalTool extends AbstractTool{
         this.x = getStartX() > getEndX() ? getEndX():getStartX();
         this.y = getStartY() > getEndY() ? getEndY():getStartY();
     }
-
-//    @Override
-//    public void mouseReleased(MouseEvent e) {
-//        super.mouseReleased(e);
-//        int x = getStartX() > e.getX() ? e.getX():getStartX();
-//        int y = getStartY() > e.getY() ? e.getY():getStartY();
-//        graphics.drawOval(x, y, Math.abs(getStartX()-e.getX()), Math.abs(getStartY()-e.getY()));
-//    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -49,7 +41,7 @@ public class OvalTool extends AbstractTool{
         this.y = getStartY() > getEndY() ? getEndY():getStartY();
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 独立绘制方法
         g2.setColor(color);
         g2.drawOval(getX(),getY(), Math.abs(getStartX()-getEndX()), Math.abs(getStartY()-getEndY()));
     }

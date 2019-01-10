@@ -1,20 +1,15 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+// 铅笔绘制类
 public class PencilTool extends AbstractTool{
     public PencilTool(ImageFrame frame){
         this.frame = frame;
         this.graphics = frame.DrawPanel.getGraphics();
     }
 
-//    @Override
-//    public Graphics getGraphics() {
-//        return super.getGraphics();
-//    }
-
     public PencilTool(ImageFrame frame,int StartX, int StartY, int EndX, int EndY){
         this.frame = frame;
-        // this.graphics = frame.DrawPanel.getGraphics();
         this.color = frame.currentColor;
         setStartX(StartX);
         setStartY(StartY);
@@ -34,22 +29,9 @@ public class PencilTool extends AbstractTool{
         super.mouseDragged(e);
         setEndX(e.getX());
         setEndY(e.getY());
-//        System.out.printf("2:EndX:%d", this.getEndX());
-//        System.out.printf("2:EndY:%d", this.getEndY());
-            // graphics.drawLine(getStartX(), getStartY(), getEndX(), getEndY());
-//            setStartX(e.getX());
-//            setStartY(e.getY());
     }
 
-//    @Override
-//    public void mouseReleased(MouseEvent e) {
-//        super.mouseReleased(e);
-//        // 初始化
-//        setStartX(0);
-//        setStartY(0);
-//    }
-
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 独立绘制方法
         g2.setColor(color);
         g2.drawLine(getStartX(), getStartY(), getEndX(), getEndY());
     }

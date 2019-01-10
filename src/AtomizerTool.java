@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.Random;
 
+// 喷枪实现
 public class AtomizerTool extends AbstractTool{
     public AtomizerTool(ImageFrame frame){
         this.frame = frame;
@@ -27,16 +27,9 @@ public class AtomizerTool extends AbstractTool{
 //        int count = 10;
         setStartX(e.getX());
         setStartY(e.getY());
-//        if (e.getX() > 0 && e.getY() > 0){
-//            for (int i = 0; i < count;i++){
-//                int x = new Random().nextInt(size) + 1;
-//                int y = new Random().nextInt(size) + 1;
-//                graphics.fillOval(e.getX() + x,e.getY() + y,2,2);
-//            }
-//        }
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){    // 独立绘制方法
         g2.setColor(color);
         g2.fillOval(getStartX()+getEndX(),getStartY()+getEndY(),2,2);
     }

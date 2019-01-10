@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+// 图像顶层抽象，实现设置，获取具体参数的方法
 public class AbstractTool extends JLabel implements MouseMotionListener,MouseListener{
     private int StartX = 0;
     private int StartY = 0;
