@@ -39,16 +39,14 @@ public class ImageService {
 
     // 新建文件
     public static void newone(ImageFrame frame) {
-        if (frame.DrawPanel.abstractTools.size() != 1) { // 画布非空
+        if (frame.DrawPanel.abstractTools.size() > 1) { // 画布非空
             int yn = JOptionPane.showConfirmDialog(frame,"画布不空,是否保存文件?",
                     "保存文件", JOptionPane.YES_NO_OPTION);
             if (yn == JOptionPane.YES_OPTION) {
                 saveFile(frame);
             }
-            else {
-                frame.DrawPanel.abstractTools.clear();  // 清空画板
-                frame.DrawPanel.setBgImage(null);   // 清空背景
-            }
+            frame.DrawPanel.abstractTools.clear();  // 清空画板
+            frame.DrawPanel.setBgImage(null);   // 清空背景
             frame.repaint();    // 刷新画板
         }
     }
