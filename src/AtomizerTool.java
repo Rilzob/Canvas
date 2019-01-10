@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.Random;
 
 public class AtomizerTool extends AbstractTool{
     public AtomizerTool(ImageFrame frame){
